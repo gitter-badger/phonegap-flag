@@ -34,14 +34,28 @@ window.app = {
             }
         });
     },
+    bindClick: function (elem) {
+        var self = this;
+        elem.click(function () {
+            var itemToRemove = $(this);
+            itemToRemove.addClass('to-remove');
+
+            setTimeout(function(){
+                itemToRemove.hide('slow');
+            }, 300);
+
+            self.removeItem(itemToRemove.html());
+        });
+    },
     createItem: function (value) {
         var fragmentStart = '<li class="item active">',
             fragmentEnd = '</li>';
 
             $('#list').prepend(fragmentStart + value + fragmentEnd);
 
-            $('#new-item').val('');
+            this.bindClick($('#list li:first-child'));
 
+            $('#new-item').val('');
             this.storeItem(value);
     },
     storeItem: function (value) {
