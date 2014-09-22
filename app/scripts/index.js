@@ -65,7 +65,31 @@ window.app = {
 
             window.localStorage.setItem('list-of-todos', JSON.stringify({"list": newList}));
         }
+    },
+    removeItem: function (value) {
+        if ( window.localStorage.getItem('list-of-todos').indexOf(value) >= 0) {
+            var newList = $.parseJSON(window.localStorage.getItem('list-of-todos')).list;
 
+            newList.splice(newList.indexOf(value), 1);
+
+            window.localStorage.setItem('list-of-todos', JSON.stringify({"list": newList}));
+        }
     }
 };
 window.app.initialize();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
